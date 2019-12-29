@@ -1,0 +1,4 @@
+monitor reset init
+load
+break main
+continue

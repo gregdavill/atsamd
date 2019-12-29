@@ -183,11 +183,11 @@ impl GenericClockController {
         if use_external_crystal {
             enable_external_32kosc(osc32kctrl);
             state.reset_gclk();
-            state.set_gclk_divider_and_source(GCLK1, 1, XOSC32K, false);
+            state.set_gclk_divider_and_source(GCLK2, 1, XOSC32K, false);
         } else {
             enable_internal_32kosc(osc32kctrl);
             state.reset_gclk();
-            state.set_gclk_divider_and_source(GCLK1, 1, OSCULP32K, false);
+            state.set_gclk_divider_and_source(GCLK2, 1, OSCULP32K, false);
         }
 
         while state.gclk.syncbusy.read().genctrl0().is_gclk0() {}
@@ -229,8 +229,8 @@ impl GenericClockController {
             state,
             gclks: [
                 OSC120M_FREQ,
-                OSC32K_FREQ,
                 Hertz(0),
+                OSC32K_FREQ,
                 Hertz(0),
                 Hertz(0),
                 MegaHertz(2).into(),
@@ -355,9 +355,9 @@ impl GenericClockController {
     /// configured.
     pub fn $id(&mut self, generator: &GClock) -> Option<$Type> {
         let bits : u64 = 1<<$clock.bits() as u64;
-        if (self.used_clocks & bits) != 0 {
-            return None;
-        }
+        //if (self.used_clocks & bits) != 0 {
+        //    return None;
+        //}
         self.used_clocks |= bits;
 
         self.state.enable_clock_generator($clock, generator.gclk);

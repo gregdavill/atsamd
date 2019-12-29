@@ -87,12 +87,15 @@ impl<'a> RUNSTDBY_W<'a> {
 pub enum TRIGSRC_A {
     #[doc = "0: Only software/event triggers"]
     DISABLE,
+    #[doc = "5: SERCOM0 tx"]
+    SERCOM_0_TX = 5,
 }
 impl From<TRIGSRC_A> for u8 {
     #[inline(always)]
     fn from(variant: TRIGSRC_A) -> Self {
         match variant {
             TRIGSRC_A::DISABLE => 0,
+            TRIGSRC_A::SERCOM_0_TX => 5,
         }
     }
 }
@@ -105,6 +108,7 @@ impl TRIGSRC_R {
         use crate::Variant::*;
         match self.bits {
             0 => Val(TRIGSRC_A::DISABLE),
+            5 => Val(TRIGSRC_A::SERCOM_0_TX),
             i => Res(i),
         }
     }

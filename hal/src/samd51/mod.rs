@@ -9,6 +9,8 @@ pub mod watchdog;
 mod serial_number;
 pub use serial_number::*;
 
+pub mod dma;
+
 #[cfg(feature = "unproven")]
 pub mod adc;
 

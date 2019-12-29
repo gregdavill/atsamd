@@ -181,10 +181,10 @@ macro_rules! spi_master {
                 type Error = Error;
 
                 fn read(&mut self) -> nb::Result<u8, Error> {
-                    let status = self.spi().status.read();
-                    if status.bufovf().bit_is_set() {
-                        return Err(nb::Error::Other(Error::Overrun));
-                    }
+                    //let status = self.spi().status.read();
+                    //if status.bufovf().bit_is_set() {
+                    //    return Err(nb::Error::Other(Error::Overrun));
+                    //}
 
                     let intflag = self.spi().intflag.read();
                     // rxc is receive complete
